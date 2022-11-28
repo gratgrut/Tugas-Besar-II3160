@@ -5,7 +5,7 @@ class Account(BaseModel):
     password: str
 
     class Config:
-        extra = {
+        schema_extra = {
             "example": {
                 "email": "fastapi@uhuy.com",
                 "password": "uhuy!"
@@ -16,9 +16,10 @@ class AccountSignIn(BaseModel):
     email: EmailStr
     password: str
 
-    extra = {
-        "example": {
-            "email": "fastapi@uhuy.com",
-            "password": "uhuy!"
+    class Config:
+        schema_extra = {
+            "example": {
+                "email": "fastapi@uhuy.com",
+                "password": "uhuy!"
+            }
         }
-    }
