@@ -1,9 +1,9 @@
 import uvicorn
 from fastapi import FastAPI, Request
 from dotenv import load_dotenv
-from models import account
 from routes.account import account_router
-from utils import get_hash, encode_token, SECRET, authorize
+from routes.heart_condition import heart_router
+from utils import authorize
 
 
 load_dotenv()
@@ -12,6 +12,7 @@ app = FastAPI()
 
 
 app.include_router(account_router, prefix="/account")
+app.include_router(heart_router, prefix="/heart")
 
 @app.get("/")
 def hello(request: Request):
