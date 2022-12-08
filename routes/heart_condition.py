@@ -81,7 +81,7 @@ async def update_heart(id, heart: Heart):
 @heart_router.delete("/{id}")
 async def delete_heart(id: int):
     return heartEntity(client.heart_disease_api.heart_condition.find_one_and_delete({"id":id}))
-    raise HTTPException(
-        status_code=status.HTTP_404_NOT_FOUND,
-        detail="Heart condition with supplied ID does not exist"
-    )
+    # raise HTTPException(
+    #     status_code=status.HTTP_404_NOT_FOUND,
+    #     detail="Heart condition with supplied ID does not exist"
+    # )
