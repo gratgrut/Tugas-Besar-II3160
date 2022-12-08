@@ -1,6 +1,8 @@
 from pydantic import BaseModel
+from bson import ObjectId
 
 class Heart(BaseModel):
+    _id: ObjectId()
     id: int
     name: str
     age: int
