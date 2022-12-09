@@ -16,9 +16,7 @@ prediction_router = APIRouter(
 @prediction_router.post("/")
 async def get_prediction(body: Prediction):
 
-    # predictive system
     input = dict(body)
-    # input = dicti.items()
     input_data = [input['age'], input['sex'], input['cp'], input['trestbps'], input['chol'], input['fbs'], input['restecg'], input['thalach'], input['exang'], input['oldpeak'], input['slope'], input['ca'], input['thal']]
 
     # change the input data to a numpy array
@@ -28,14 +26,8 @@ async def get_prediction(body: Prediction):
     input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
 
     prediction = model.predict(input_data_reshaped)
-    # print(prediction)
 
     if (prediction[0]== 0):
         return ('The Person does not have a Heart Disease')
     else:
         return ('The Person has Heart Disease')
-    # return heartsEntity(client.heart_disease_api.heart_condition.find())
-
-# @prediction_router.get("/")
-# async def testing():
-#     return heart_data

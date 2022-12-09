@@ -1,20 +1,13 @@
 from database.connection import client
-import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
-from sklearn.feature_extraction import DictVectorizer
-# db, collection, query={}, host='localhost', port=27017
-
-vec = DictVectorizer()
 
 db = client.heart_disease_api.heart_condition.find({},
    { '_id': 0, "id": 0, "name":0 })
 
 heart_data = pd.DataFrame(list(db))
 
-#heart_data = vec.fit_transform(db).toarray()
 
 X = heart_data.drop(columns='target', axis=1)
 Y = heart_data['target'].astype('bool')
@@ -29,31 +22,4 @@ import pickle
 
 with open('.\models\heart_disease_prediction.pickle', 'wb') as f:
     pickle.dump(model, f)
-
-# # accuracy on training data
-# X_train_prediction = model.predict(X_train)
-# training_data_accuracy = accuracy_score(X_train_prediction, Y_train)
-
-# # accuracy on test data
-# X_test_prediction = model.predict(X_test)
-# test_data_accuracy = accuracy_score(X_test_prediction, Y_test)
-
-
-# # predictive system
-
-# input_data = (62,0,0,140,268,0,0,160,0,3.6,0,2,2)
-
-# # change the input data to a numpy array
-# input_data_as_numpy_array= np.asarray(input_data)
-
-# # reshape the numpy array as we are predicting for only on instance
-# input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
-
-# prediction = model.predict(input_data_reshaped)
-# print(prediction)
-
-# if (prediction[0]== 0):
-#   print('The Person does not have a Heart Disease')
-# else:
-#   print('The Person has Heart Disease')
 

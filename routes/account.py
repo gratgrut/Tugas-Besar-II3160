@@ -1,7 +1,7 @@
 import json
-from fastapi import APIRouter, HTTPException, status, Response
+from fastapi import APIRouter, status, Response
 from utils import get_hash, encode_token, SECRET, authorize
-from models.account import Account, AccountSignIn
+from models.account import Account
 
 account_router = APIRouter(
     tags=["Account"],
@@ -28,7 +28,7 @@ with open("users.json", "r") as read_file:
 
 
 @account_router.post("/signin")
-def sign_account_in(account: AccountSignIn, response: Response) -> dict:
+def sign_account_in(account: Account, response: Response) -> dict:
     found = False
     for i in range (len(accounts)) :
         if (account.email == accounts[i]["email"]):

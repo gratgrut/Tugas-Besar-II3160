@@ -1,15 +1,13 @@
-import uvicorn
 from fastapi import FastAPI, Request
-from dotenv import load_dotenv
 from routes.account import account_router
 from routes.heart_condition import heart_router
 from routes.prediction import prediction_router
 from utils import authorize
 
-
-dotenv = load_dotenv()
-
-app = FastAPI()
+app = FastAPI(
+    title = "Heart Disease Prediction API",
+    description="This is an API to get prediction if someone has a heart disease or not based on some parameters." 
+)
 
 
 app.include_router(account_router, prefix="/account")

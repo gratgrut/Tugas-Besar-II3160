@@ -12,14 +12,3 @@ class Account(BaseModel):
             }
         }
 
-class AccountSignIn(BaseModel):
-    email: EmailStr
-    password: str
-
-    class Config:
-        schema_extra = {
-            "example": {
-                "email": "fastapi@uhuy.com",
-                "password": "uhuy!"
-            }
-        }
