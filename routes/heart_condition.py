@@ -36,12 +36,14 @@ async def add_heart(body: Heart = Body(...)) -> dict:
 async def update_heart(id, heart: Heart):
     try:
         client.heart_disease_api.heart_condition.find_one_and_update({"id":id},{"$set":dict(heart)})
+        return {
+            "message": "Heart condition updated"
+        }
     except:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Heart condition with supplied ID does not exist"
         )  
-    return heartEntity(client.heart_disease_api.heart_condition.find_one({}))
 
 @heart_router.delete("/{id}")
 async def delete_heart(id: int):

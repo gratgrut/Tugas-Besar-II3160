@@ -1,8 +1,6 @@
-from typing import List
 from database.connection import client
-from fastapi import APIRouter, Body, HTTPException, status
+from fastapi import APIRouter
 from models.heart_condition import Prediction
-from schemas.heart_condition import heartEntity, heartsEntity
 import numpy as np
 import pickle
 
@@ -27,7 +25,13 @@ async def get_prediction(body: Prediction):
 
     prediction = model.predict(input_data_reshaped)
 
+    input["target"] = bool(prediction[0])
+
+    client.heart_disease_api.heart_condition.insert_one(input)
+
     if (prediction[0]== 0):
         return ('The Person does not have a Heart Disease')
     else:
         return ('The Person has Heart Disease')
+    
+    

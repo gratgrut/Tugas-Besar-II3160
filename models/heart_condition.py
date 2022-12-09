@@ -44,6 +44,9 @@ class Heart(BaseModel):
         }
 
 class Prediction(BaseModel):
+    _id: ObjectId()
+    id: int
+    name: str
     age: int
     sex: bool
     cp: int
@@ -61,6 +64,9 @@ class Prediction(BaseModel):
     class Config:
         schema_extra = {
             "example": {
+                "_id": 3847587462483,
+                "id": 5,
+                "name": "Nappie Dearden",
                 "age": 54,
                 "sex": 1,
                 "cp": 2,
