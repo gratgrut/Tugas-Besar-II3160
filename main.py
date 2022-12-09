@@ -7,7 +7,7 @@ from routes.prediction import prediction_router
 from utils import authorize
 
 
-load_dotenv()
+dotenv = load_dotenv()
 
 app = FastAPI()
 

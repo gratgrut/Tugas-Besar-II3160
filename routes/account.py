@@ -12,19 +12,19 @@ with open("users.json", "r") as read_file:
 
 
 
-@account_router.post("/signup")
-async def sign_account_up(data: Account) -> dict:
-    if data.email in accounts:
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT,
-            detail="Account with supplied username exists"
-        )
+# @account_router.post("/signup")
+# async def sign_account_up(data: Account) -> dict:
+#     if data.email in accounts:
+#         raise HTTPException(
+#             status_code=status.HTTP_409_CONFLICT,
+#             detail="Account with supplied username exists"
+#         )
 
-    accounts[data.email] = data
+#     accounts[data.email] = data
 
-    return {
-        "message": "Account successfully registered!"
-    }
+#     return {
+#         "message": "Account successfully registered!"
+#     }
 
 
 @account_router.post("/signin")
